@@ -27,7 +27,7 @@ namespace Task_13_6_2
         }
 
         /// <summary>
-        /// Используем  LINQ 
+        /// Используем  LINQ (оказывается, так заметно быстрее)
         /// </summary>
         /// <param name="words"></param>
         private static void TenMostUsed2(string[] words)
@@ -50,7 +50,7 @@ namespace Task_13_6_2
 
             timer.Stop();
             TimeSpan timeTaken = timer.Elapsed;
-            Console.WriteLine($"Time taken by Method 2: + {timeTaken.ToString(@"m\:ss\.fffff")}");
+            Console.WriteLine($"Time taken by Method 2: {timeTaken.ToString(@"m\:ss\.fffff")}");
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Task_13_6_2
 
             timer.Stop();
             TimeSpan timeTaken = timer.Elapsed;
-            Console.WriteLine($"Time taken by Method 1: + {timeTaken.ToString(@"m\:ss\.fffff")}");
+            Console.WriteLine($"Time taken by Method 1: {timeTaken.ToString(@"m\:ss\.fffff")}");
         }
 
         class WordCount : IComparable<WordCount>
@@ -107,7 +107,7 @@ namespace Task_13_6_2
                 this.count = count;
             }
 
-            public int CompareTo(WordCount other)
+            public int CompareTo(WordCount other)       //наверное, нехорошо так реализовывать CompareTo? Но в нашем случае оно нужно для единственой цели, и эта цель достигается.. 
             {
                 if (this.count > other.count)
                     return -1;
@@ -116,10 +116,7 @@ namespace Task_13_6_2
                 return 0;
             }
 
-            public string ToString()
-            {
-                return this.count + " " + this.word;
-            }
+            public override string ToString() => this.count + " " + this.word;
         }
         
     }
